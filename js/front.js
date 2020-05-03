@@ -18,6 +18,7 @@ var hand = null,
     coinMoveNum = 0,
     rouletteIng = false,
     rouletteMoveSet = null,
+    handBasicMoveSet = null,
     gameIng = false,
     gameResultTxt = '',
     rewardNum = 0,
@@ -35,6 +36,9 @@ btnCoin.addEventListener('click', function() {
         gameIng = true;
         handMove(50);
         clearInterval(rouletteMoveSet);
+        clearInterval(handBasicMoveSet);
+        
+        
         rouletteMove(200);
         roulette.children[rewardNum].classList.remove('on');
         for (var i = 0; i < msgArea.children.length; i++ ) {
@@ -94,13 +98,14 @@ function gameResult(res) {
         msgResult(gameResultTxt);
         clearInterval(rouletteMoveSet);
         rouletteMove(1000);
+        handBasicMove(1000);
         console.log('졌다');
     } else if (gameResultTxt ==='win') {
         clearInterval(handMoveSet);
         rouletteIng = false;
-        msgResult(gameResultTxt);
         console.log('이겼다');
         setTimeout(function() {
+            msgResult(gameResultTxt);
             coinMove();
         }, 350);
     }
@@ -151,6 +156,7 @@ function coinMove() {
         clearInterval(rouletteMoveSet);
         clearInterval(msgViewWinSet);
         rouletteMove(1000);
+        handBasicMove(1000);
         gameIng = false;
     }, 3000)
 }
@@ -206,4 +212,20 @@ function rouletteMove(time) {
     }, time);
 }
 
+function handBasicMove(time) {
+    var prev = handNum,
+        next = handNum;
+        console.log(handNum)
+    handBasicMoveSet = setInterval(function() {
+        next++;
+        if (next >= 3) {
+            next = 0;
+        }
+        hand.children[next].classList.add('on');
+        hand.children[prev].classList.remove('on');
+        prev = next;
+    }, time);
+}
+
 rouletteMove(1000);
+handBasicMove(1000);
