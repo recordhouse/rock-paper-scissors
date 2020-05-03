@@ -341,7 +341,20 @@ body {
   transform: rotate(225deg);
 }
 
-
 .msgArea > div.on {
   display: block;
+}
+
+.btnStart {
+  display: block;
+  margin: 20px auto 0;
+  border: 5px solid #000;
+  border-radius: 30px;
+  width: 250px;
+  height: 60px;
+  font-size: 30px;
+  background-color: #333;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
 }

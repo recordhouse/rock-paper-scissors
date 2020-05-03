@@ -1,14 +1,14 @@
 /*
- * @object name: 
- * @info: 
- * @date: 
+ * @object name: 미정
+ * @info: 짱깸뽀
+ * @date: 2020-05-04
  * @author: 기록맨
  */
 
 var hand = null,
     handNum = 0,
     handMoveSet = null,
-    btnCoin = null,
+    btnStart = null,
     roulette = null,
     btnControl = null,
     btnRock = null,
@@ -24,21 +24,19 @@ var hand = null,
     rewardNum = 0,
     msgViewWinSet = null;
     hand = document.getElementById('hand');
-    btnCoin = document.getElementById('btnCoin');
+    btnStart = document.getElementById('btnStart');
     roulette = document.getElementById('roulette');
     btnControl = document.getElementById('btnControl');
     btnRock = document.getElementById('btnRock');
     btnPaper = document.getElementById('btnPaper');
     msgArea = document.getElementById('msgArea');
     
-btnCoin.addEventListener('click', function() {
+btnStart.addEventListener('click', function() {
     if (!gameIng) {
         gameIng = true;
         handMove(50);
         clearInterval(rouletteMoveSet);
         clearInterval(handBasicMoveSet);
-        
-        
         rouletteMove(200);
         roulette.children[rewardNum].classList.remove('on');
         for (var i = 0; i < msgArea.children.length; i++ ) {
