@@ -62,14 +62,10 @@ table {
 html {
   font-size: 18px;
   padding: 10px;
-  width: 100%;
-  height: 100%;
 }
 
 body {
   font-family: "Spoqa Han Sans", "Source Sans Pro", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Nanum Gothic", "Verdana", "Arial", "Dotum", sans-serif;
-  width: 100%;
-  height: 100%;
   color: #343a40;
   line-height: 1.6;
 }
@@ -81,20 +77,47 @@ body {
 .wrapper {
   position: relative;
   margin: 0 auto;
+  padding-top: 50px;
   box-sizing: border-box;
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
-  max-height: 500px;
+  width: 500px;
+}
+
+.hand {
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  z-index: 20;
+}
+
+.hand > li {
+  display: none;
+  position: relative;
+  border: 5px solid #333;
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  background-color: #333;
+}
+
+.hand > li.on {
+  display: block;
+}
+
+.hand > li img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
 }
 
 .roulette {
   position: relative;
-  border: 5px solid #000;
+  z-index: 10;
   border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  background-color: #cc3333;
+  width: 500px;
+  height: 500px;
+  background-color: #000;
 }
 
 .roulette > li {
@@ -108,8 +131,8 @@ body {
   line-height: 62px;
   font-size: 40px;
   font-weight: bold;
-  background-color: #fff;
-  color: #000;
+  background-color: #00cc00;
+  color: #fff;
 }
 
 .roulette > li:nth-child(odd) {
@@ -117,8 +140,28 @@ body {
   color: #fff;
 }
 
+.roulette.on > li {
+  background-color: #cc3333;
+  color: #fff;
+}
+
+.roulette.on > li:nth-child(odd) {
+  background-color: #00cc00;
+  color: #fff;
+}
+
 .roulette > li.on {
-  background-color: #000;
+  border: 5px solid #ffff00;
+  box-shadow: 0 0 20px #ffff66;
+  background-color: #ffffcc;
+  color: #000;
+}
+
+.roulette.on > li:nth-child(odd).on {
+  border: 5px solid #ffff00;
+  box-shadow: 0 0 20px #ffff66;
+  background-color: #ffffcc;
+  color: #000;
 }
 
 .roulette > li:nth-child(1) {
@@ -192,45 +235,8 @@ body {
   transform: rotate(150deg);
 }
 
-
-.hand {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 100%;
-  max-width: 300px;
-  height: 100%;
-  max-height: 300px;
-}
-
-.hand > li {
-  display: none;
-  position: relative;
-  border: 5px solid #000;
-  border-radius: 50%;
-  width: 100%;
-  max-width: 300px;
-  height: 100%;
-  max-height: 300px;
-  background-color: #666;
-}
-
-.hand > li.on {
-  display: block;
-}
-
-.hand > li img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 200px;
-}
-
-
-
 .btnControl {
-  margin-top: 20px;
+  margin-top: 70px;
   text-align: center;
 }
 .btnControl button {
@@ -252,31 +258,90 @@ body {
   background: #00cc00 url(../images/scissors.png) no-repeat center center / 70px auto;
 }
 .btnControl button:nth-child(2) {
-  background: #ffcc33 url(../images/rock.png) no-repeat center center / 70px auto;
+  background: #ffcc00 url(../images/rock.png) no-repeat center center / 70px auto;
 }
 .btnControl button:nth-child(3) {
   background: #cc3333 url(../images/paper.png) no-repeat center center / 70px auto;
 }
 
 .msgArea > div {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 50px;
-  text-align: center;
+  position: absolute;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  width: 300px;
+  height: 300px;
+  background-color: #333;
 }
 
-.msgArea > div.on {
-  display: block;
+.msgArea > div:nth-child(1) {
+  top: 0;
+  left: -50px;
+  border-radius: 100% 5% 0 5%;
+}
+
+.msgArea > div:nth-child(2) {
+  top: 0;
+  right: -50px;
+  border-radius: 5% 100% 5% 0;
+}
+
+.msgArea > div:nth-child(3) {
+  top: 300px;
+  right: -50px;
+  border-radius: 0 5% 100% 5%;
+}
+
+.msgArea > div:nth-child(4) {
+  top: 300px;
+  left: -50px;
+  border-radius: 5% 0 5% 100%;
+}
+
+.msgArea > div:nth-child(1).on {
+  background-color: #cc3333;
+}
+.msgArea > div:nth-child(2).on {
+  background-color: #cc3333;
+}
+.msgArea > div:nth-child(3).on {
+  background-color: #ffcc00;
+}
+.msgArea > div:nth-child(4).on {
+  background-color: #00cc00;
 }
 
 .msgArea > div span {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
 }
 
+.msgArea > div:nth-child(1) span {
+  top: 27.5%;
+  left: 25%;
+  transform: rotate(315deg);
+}
+
+.msgArea > div:nth-child(2) span {
+  top: 27.5%;
+  right: 25%;
+  transform: rotate(45deg);
+}
+
+.msgArea > div:nth-child(3) span {
+  bottom: 27.5%;
+  right: 25%;
+  transform: rotate(135deg);
+}
+
+.msgArea > div:nth-child(4) span {
+  bottom: 27.5%;
+  left: 25%;
+  transform: rotate(225deg);
+}
+
+
+.msgArea > div.on {
+  display: block;
+}

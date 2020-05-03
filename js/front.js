@@ -17,10 +17,11 @@ var hand = null,
     msgArea = null,
     coinMoveNum = 0,
     rouletteIng = false,
+    rouletteMoveSet = null,
     gameIng = false,
     gameResultTxt = '',
-    rewardNum = 0;
-
+    rewardNum = 0,
+    msgViewWinSet = null;
     hand = document.getElementById('hand');
     btnCoin = document.getElementById('btnCoin');
     roulette = document.getElementById('roulette');
@@ -33,7 +34,13 @@ btnCoin.addEventListener('click', function() {
     if (!gameIng) {
         gameIng = true;
         handMove(50);
-        console.log('게임 시작')
+        clearInterval(rouletteMoveSet);
+        rouletteMove(200);
+        roulette.children[rewardNum].classList.remove('on');
+        for (var i = 0; i < msgArea.children.length; i++ ) {
+            msgArea.children[i].classList.remove('on');
+        }
+        console.log('게임 시작');
     }
 });
 
@@ -85,6 +92,8 @@ function gameResult(res) {
         rouletteIng = false;
         gameIng = false;
         msgResult(gameResultTxt);
+        clearInterval(rouletteMoveSet);
+        rouletteMove(1000);
         console.log('졌다');
     } else if (gameResultTxt ==='win') {
         clearInterval(handMoveSet);
@@ -122,7 +131,6 @@ function handShape(res1, res2, res3) {
     hand.children[res3].classList.remove('on');
 }
 
-// 이겼을 때
 function coinMove() {
     rewardNum = Math.floor((Math.random() * 12));
     coinMoveNum = rewardNum;
@@ -139,29 +147,63 @@ function coinMove() {
         }
     }, 50);
     setTimeout(function() {
-        clearInterval(coinMoveSet)
-
+        clearInterval(coinMoveSet);
+        clearInterval(rouletteMoveSet);
+        clearInterval(msgViewWinSet);
+        rouletteMove(1000);
+        gameIng = false;
     }, 3000)
 }
 
 
 function msgResult() {
     if (gameResultTxt ==='tie') {
-        msgView(0, 1, 2);
+        for (var i = 0; i < msgArea.children.length; i++ ) {
+            msgView(i, 2);
+        }
     } else if (gameResultTxt ==='lose') {
-        msgView(1, 2, 0);
+        for (var i = 0; i < msgArea.children.length; i++ ) {
+            msgView(i, 3);
+        }
     } else if (gameResultTxt ==='win') {
-        msgView(2, 0, 1);
+        msgViewWin();
     }
 }
 
-function msgView(res1, res2, res3) {
-    msgArea.children[res1].classList.add('on');
-    msgArea.children[res2].classList.remove('on');
-    msgArea.children[res3].classList.remove('on');
+function msgView(i, res) {
+    msgArea.children[i].classList.remove('on');
+    msgArea.children[res].classList.add('on');
     setTimeout(function() {
-        msgArea.children[res1].classList.remove('on');
-    }, 350)
+        for (var i = 0; i < msgArea.children.length; i++ ) {
+            msgArea.children[i].classList.remove('on');
+        }
+    }, 500)
 }
 
+function msgViewWin() {
+    var prev = 0,
+        next = 0;
+    msgViewWinSet = setInterval(function(){
+        next++;
+        if (next > 1) {
+            next = 0;
+        }
+        msgArea.children[next].classList.add('on');
+        msgArea.children[prev].classList.remove('on');
+        prev = next;
+    }, 100);
+}
 
+function rouletteMove(time) {
+    var rouletteMoveNum = 0;
+    rouletteMoveSet = setInterval(function() {
+        rouletteMoveNum++;
+        if (rouletteMoveNum % 2 === 0) {
+            roulette.classList.add('on');
+        } else {
+            roulette.classList.remove('on');
+        }
+    }, time);
+}
+
+rouletteMove(1000);
