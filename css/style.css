@@ -1,0 +1,215 @@
+/***************/
+/* MEYER RESET */
+/***************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul, dl {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/**************/
+/* BASE RULES */
+/**************/
+html {
+  font-size: 18px;
+}
+
+body {
+  font-family: "Spoqa Han Sans", "Source Sans Pro", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Nanum Gothic", "Verdana", "Arial", "Dotum", sans-serif;
+  color: #343a40;
+  line-height: 1.6;
+}
+
+/**********/
+/* COMMON */
+/**********/
+
+button {
+  display: inline-block;
+  border: 0;
+  padding: 0;
+  width: 70px;
+  height: 40px;
+  font-size: 14px;
+  background: none;
+  background-color: #ff9933;
+  color: #fff;
+}
+
+button:disabled {
+  background-color: #e0e0e0;
+}
+
+/**********/
+/* LAYOUT */
+/**********/
+
+#wrapper {
+  position: relative;
+}
+
+.hand {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+
+.hand > li {
+  display: none;
+  position: relative;
+  border: 5px solid #000;
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  background-color: #ccc;
+}
+
+.hand > li.on {
+  display: block;
+}
+
+.hand > li img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+}
+
+.roulette {
+  position: relative;
+  border: 5px solid #000;
+  border-radius: 50%;
+  width: 500px;
+  height: 500px;
+}
+
+.roulette > li {
+  position: absolute;
+  border: 5px solid #000;
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 15%;
+  height: 15%;
+  text-align: center;
+  line-height: 62px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.roulette > li.on {
+  background-color: #000;
+  color: #fff;
+}
+
+.roulette > li:nth-child(1) {
+  top: 2.5%;
+  right: 42.5%;
+}
+
+.roulette > li:nth-child(2) {
+  top: 7.5%;
+  right: 22.5%;
+}
+
+.roulette > li:nth-child(3) {
+  top: 22.5%;
+  right: 7.5%;
+}
+
+.roulette > li:nth-child(4) {
+  top: 42.5%;
+  right: 2.5%;
+}
+
+.roulette > li:nth-child(5) {
+  bottom: 22.5%;
+  right: 7.5%;
+}
+
+.roulette > li:nth-child(6) {
+  bottom: 7.5%;
+  right: 22.5%;
+}
+
+.roulette > li:nth-child(7) {
+  bottom: 2.5%;
+  right: 42.5%;
+}
+
+.roulette > li:nth-child(8) {
+  bottom: 7.5%;
+  left: 22.5%;
+}
+
+.roulette > li:nth-child(9) {
+  bottom: 22.5%;
+  left: 7.5%;
+}
+
+.roulette > li:nth-child(10) {
+  bottom: 42.5%;
+  left: 2.5%;
+}
+
+.roulette > li:nth-child(11) {
+  top: 22.5%;
+  left: 7.5%;
+}
+
+.roulette > li:nth-child(12) {
+  top: 7.5%;
+  left: 22.5%;
+}
+
+
+
