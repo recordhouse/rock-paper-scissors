@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div id="wrapper">
+    <div id="wrapper" class="wrapper">
         <ul id="roulette" class="roulette">
             <li>4</li>
             <li>1</li>
@@ -30,12 +30,17 @@
             <li><img src="./images/rock.png" alt="바위" /></li>
             <li><img src="./images/paper.png" alt="보" /></li>
         </ul>
-        <div id="btnResult">
+        <div id="btnControl" class="btnControl">
             <button type="button" id="btnScissors">가위</button>
             <button type="button" id="btnRock">바위</button>
             <button type="button" id="btnPaper">보</button>
         </div>
         <button type="button" id="btnCoin">코인</button>
+        <div id="msgArea" class="msgArea">
+            <div><span>비겼다!!</span></div>
+            <div><span>졌다!!</span></div>
+            <div><span>이겼다!!</span></div>
+        </div>
     </div>
     <script src="./js/front.js"></script>
 </body>
