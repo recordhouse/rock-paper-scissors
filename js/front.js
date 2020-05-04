@@ -16,13 +16,15 @@ var hand = null,
     coinMoveSet = null,
     msgArea = null,
     coinMoveNum = 0,
+    coinGetNum = 0;
     rouletteIng = false,
     rouletteMoveSet = null,
     handBasicMoveSet = null,
     gameIng = false,
     gameResultTxt = '',
     rewardNum = 0,
-    msgViewWinSet = null;
+    msgViewWinSet = null,
+    goldArea = null;
     hand = document.getElementById('hand');
     btnStart = document.getElementById('btnStart');
     roulette = document.getElementById('roulette');
@@ -30,6 +32,7 @@ var hand = null,
     btnRock = document.getElementById('btnRock');
     btnPaper = document.getElementById('btnPaper');
     msgArea = document.getElementById('msgArea');
+    goldArea = document.getElementById('goldArea');
     
 btnStart.addEventListener('click', function() {
     if (!gameIng) {
@@ -38,7 +41,9 @@ btnStart.addEventListener('click', function() {
         clearInterval(rouletteMoveSet);
         clearInterval(handBasicMoveSet);
         rouletteMove(200);
+        goldSet('del');
         roulette.children[rewardNum].classList.remove('on');
+        btnControl.classList.add('on');
         for (var i = 0; i < msgArea.children.length; i++ ) {
             msgArea.children[i].classList.remove('on');
         }
@@ -97,6 +102,7 @@ function gameResult(res) {
         clearInterval(rouletteMoveSet);
         rouletteMove(1000);
         handBasicMove(1000);
+        btnControl.classList.remove('on');
         console.log('졌다');
     } else if (gameResultTxt ==='win') {
         clearInterval(handMoveSet);
@@ -137,6 +143,8 @@ function handShape(res1, res2, res3) {
 function coinMove() {
     rewardNum = Math.floor((Math.random() * 12));
     coinMoveNum = rewardNum;
+    coinGetNum = Number(roulette.children[coinMoveNum].innerHTML);
+    
     coinMoveSet = setInterval(function() {
         coinMoveNum++;
         if (coinMoveNum >= roulette.children.length) {
@@ -155,7 +163,11 @@ function coinMove() {
         clearInterval(msgViewWinSet);
         rouletteMove(1000);
         handBasicMove(1000);
+        btnControl.classList.remove('on');
         gameIng = false;
+        setTimeout(function() {
+            goldSet('add', coinGetNum);
+        }, 350);
     }, 3000)
 }
 
@@ -212,7 +224,6 @@ function rouletteMove(time) {
 function handBasicMove(time) {
     var prev = handNum,
         next = handNum;
-        console.log(handNum)
     handBasicMoveSet = setInterval(function() {
         next++;
         if (next >= 3) {
@@ -224,5 +235,18 @@ function handBasicMove(time) {
     }, time);
 }
 
+function goldSet(state, num) {
+    if (state === 'add') {
+        for (var i = 0; i < num; i++ ) {
+            var gold = document.createElement('span');
+                gold.innerHTML += 'GOLD';
+            goldArea.appendChild(gold);
+        }
+    } else if ('del') {
+        goldArea.removeChild(goldArea.lastChild);
+    }
+}
+
 rouletteMove(1000);
 handBasicMove(1000);
+goldSet('add', 8);
