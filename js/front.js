@@ -1,5 +1,5 @@
 /*
- * @object name: 미정
+ * @object name: 
  * @info: 짱깸뽀
  * @date: 2020-05-04
  * @author: 기록맨
@@ -158,7 +158,6 @@ function coinMove() {
         gameIng = false;
     }, 3000)
 }
-
 
 function msgResult() {
     if (gameResultTxt ==='tie') {
