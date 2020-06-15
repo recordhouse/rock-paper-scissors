@@ -1,6 +1,6 @@
 # Rock-Paper-Scissors Game
 
-## 결과 화면
+## 게임 화면
 https://recordboy.github.io/rock-paper-scissors/
 
 ## 기본 설명
